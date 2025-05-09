@@ -1,0 +1,16 @@
+{
+  "name": "@micro/qiankun",
+  "version": "1.0.0",
+  "description": "简化版微前端框架 (JavaScript版本)",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "prepare": "echo '无需构建，直接使用源码'"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+
+}

@@ -1,0 +1,11 @@
+.about-container {
+  padding: 20px;
+  background-color: #f0f9eb;
+  border-radius: 5px;
+  min-height: 300px;
+}
+
+.about-container h2 {
+  color: #67c23a;
+  margin-top: 0;
+}

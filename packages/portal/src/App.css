@@ -1,0 +1,41 @@
+.app-container {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  margin-top: 0;
+  color: #333;
+}
+
+.app-header nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.app-header nav ul li {
+  margin-right: 20px;
+}
+
+.app-header nav ul li a {
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.main-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  min-height: 300px;
+}

@@ -1,0 +1,11 @@
+.home-container {
+  padding: 20px;
+  background-color: #e6f7ff;
+  border-radius: 5px;
+  min-height: 300px;
+}
+
+.home-container h2 {
+  color: #0066cc;
+  margin-top: 0;
+}

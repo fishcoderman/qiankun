@@ -1,0 +1,12 @@
+{
+  "name": "qiankun-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "pnpm -r --parallel start",
+    "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}
