@@ -12,10 +12,13 @@ const App: React.FC = () => {
     <BrowserRouter basename={BASE_NAME}>
       <div className="home-container">
         <h2>Home 子应用</h2>
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
+
+        <div className="home-color">home footer content</div>
       </div>
     </BrowserRouter>
   );
