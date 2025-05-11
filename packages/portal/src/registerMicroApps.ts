@@ -1,6 +1,5 @@
 import { registerMicroApps, start } from '@micro/qiankun';
 // import { registerMicroApps, start } from 'qiankun';
-// import { registerMicroApps, start } from './demo/index';
 
 registerMicroApps([
   {
@@ -18,4 +17,8 @@ registerMicroApps([
 ]);
 
 // 启动 qiankun
-start();
+start({
+  sandbox: {
+    strictStyleIsolation: true,
+  },
+});

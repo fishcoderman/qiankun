@@ -80,7 +80,6 @@ function initRouteListener() {
  */
 function reroute() {
   const { pathname } = window.location;
-  
   // 查找匹配当前路由的微应用
   const app = findAppByRoute(pathname);
   
@@ -93,6 +92,10 @@ function reroute() {
     
     // 加载新应用
     loadApp(app);
+  }
+
+  if (!app && activeApp) {
+    unloadApp(activeApp);
   }
 }
 
@@ -152,8 +155,6 @@ async function loadApp(app) {
     }
     container.innerHTML = assets.html;
 
-    // 注入CSS样式
-    // injectStyles(assets.styles, app.name);
     
     // 挂载应用
     await app.mount({
@@ -184,10 +185,7 @@ async function unloadApp(app) {
   try {
     // 执行应用的卸载函数
     await app.unmount();
-    
-    // 移除应用的样式
-    removeStyles(app.name);
-    
+
     // 清空容器内容
     const container = document.querySelector(app.container);
     if (container) {
@@ -240,14 +238,7 @@ async function fetchAppAssets(entry) {
         }
       });
     
-    const styles = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'))
-      .filter(link => link.href)
-      .map(link => {
-        const href = link.href;
-        return href.startsWith('http') ? href : new URL(href, entryUrl).href;
-      });
-    
-    return { html, scripts, styles };
+    return { html, scripts };
   } catch (error) {
     console.error('获取微应用资源失败:', error);
     throw error;
@@ -262,7 +253,7 @@ async function fetchAppAssets(entry) {
 async function executeScripts(scripts) {
   const module = {exports: {}}; 
   const exports = module.exports;
-  debugger;
+
   for (const script of scripts) {
     try {
       const scriptContent = await script;
@@ -298,32 +289,4 @@ function getLifecycleFunctions(appExports) {
     mount: lifecycle.mount || defaultLifecycle.mount,
     unmount: lifecycle.unmount || defaultLifecycle.unmount,
   };
-}
-
-/**
- * 注入CSS样式到主应用
- * @param {Array} styles - 样式URL列表
- * @param {string} appName - 微应用名称
- */
-async function injectStyles(styles, appName) {
-  for (const styleUrl of styles) {
-    try {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = styleUrl;
-      link.dataset.microApp = appName; // 添加标记，方便后续移除
-      document.head.appendChild(link);
-    } catch (error) {
-      console.error(`注入样式 ${styleUrl} 失败:`, error);
-    }
-  }
-}
-
-/**
- * 移除微应用的样式
- * @param {string} appName - 微应用名称
- */
-function removeStyles(appName) {
-  const styles = document.querySelectorAll(`link[data-micro-app="${appName}"]`);
-  styles.forEach(style => style.remove());
 }
